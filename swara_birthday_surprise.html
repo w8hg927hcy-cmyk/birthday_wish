@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Swara's Birthday Surprise 🎂</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:Arial,sans-serif;background:linear-gradient(135deg,#ffd7e7,#eadcff,#d9f4ff);color:#26232b;overflow-x:hidden}
+.screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:30px}
+.card{width:min(920px,94vw);min-height:650px;background:#ffffffee;border-radius:38px;padding:55px;text-align:center;box-shadow:0 25px 80px #513b5a25;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.badge{font-size:17px;color:#9a55a7;font-weight:bold;letter-spacing:2px}
+h1{font-size:58px;margin:15px 0 10px}
+h2{font-size:35px;margin:12px 0}
+p{font-size:22px;line-height:1.6;color:#5c5661;max-width:720px}
+button{border:0;border-radius:18px;padding:18px 35px;margin:14px;font-size:20px;font-weight:bold;cursor:pointer;transition:.2s}
+.primary{background:#ff4f87;color:white;box-shadow:0 10px 25px #ff4f8733}.secondary{background:#eee;color:#444}
+button:hover{transform:scale(1.06)}
+.hidden{display:none}.joke{font-size:25px;font-weight:bold;color:#8a4db0;margin:20px}
+.progress{position:fixed;top:0;left:0;height:6px;background:#ff4f87;width:0;z-index:20;transition:.4s}
+#final{background:linear-gradient(135deg,#fff,#ffe8f1)}
+.bigwish{font-size:28px;line-height:1.7;max-width:760px}
+.confetti{position:fixed;top:-40px;z-index:30;animation:fall 4s linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:0}}
+@media(max-width:650px){.card{padding:35px 22px;min-height:600px}h1{font-size:40px}h2{font-size:28px}p,.bigwish{font-size:18px}button{font-size:17px;padding:15px 25px}}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+
+<section class="screen" id="s1">
+<div class="card">
+<div class="badge">⚠️ IMPORTANT ANNOUNCEMENT ⚠️</div>
+<h1>SWARA 👀</h1>
+<p>Before I wish you a Happy Birthday, I have a few very important things to discuss with you...</p>
+<div class="joke">And haan, escape ka option nahi hai. 😂</div>
+<button class="primary" onclick="next(2)">Fine... show me 👀</button>
+</div>
+</section>
+
+<section class="screen hidden" id="s2">
+<div class="card">
+<div class="badge">CASE FILE #01</div>
+<h2>First of all...</h2>
+<p>Congratulations! 🎉<br><br>
+You have successfully survived another year of my nonsense, random messages, unnecessary jokes and whatever else I have done to irritate you. 😂</p>
+<div class="joke">Honestly, impressive. 🫡</div>
+<button class="primary" onclick="next(3)">Okay okay, continue 😭</button>
+</div>
+</section>
+
+<section class="screen hidden" id="s3">
+<div class="card">
+<div class="badge">CASE FILE #02</div>
+<h2>But let's be honest...</h2>
+<p>Life would be considerably more boring without our random conversations, stupid jokes, teasing and those moments where we both wonder...</p>
+<div class="joke">“Hum actually itne pagal kaise hain?” 😭😂</div>
+<button class="primary" onclick="next(4)">I already know where this is going 👀</button>
+</div>
+</section>
+
+<section class="screen hidden" id="s4">
+<div class="card">
+<div class="badge">ONE LAST THING...</div>
+<h2>Swara, I have a confession. 👀</h2>
+<p>You're actually one of those people whose presence makes ordinary days a little more fun.</p>
+<p>So yes... occasionally you are annoying. Very occasionally. Okay, maybe frequently. 😂</p>
+<div class="joke">But you're still a pretty amazing friend. ❤️</div>
+<button class="primary" onclick="next(5)">Okay, now give me the actual wish 🎂</button>
+</div>
+</section>
+
+<section class="screen hidden" id="s5">
+<div class="card" id="final">
+<div style="font-size:80px">🎂🎈✨</div>
+<div class="badge">THE ACTUAL REASON FOR THIS WEBSITE</div>
+<h1>HAPPY BIRTHDAY, SWARA! 🥳</h1>
+<p class="bigwish">
+I hope this new year of your life brings you loads of happiness, success,
+peace, amazing memories and people who always make you smile. ❤️<br><br>
+Thank you for being such a good friend and for all the fun, chaos,
+random conversations and memories. Never change the crazy, genuine person you are. 😂<br><br>
+Have the BEST birthday ever! 🎉
+</p>
+<div class="joke">And yes... your birthday treat is officially pending. 👀😂</div>
+<button class="primary" onclick="celebrate()">CELEBRATE 🎉</button>
+<div id="done" class="hidden joke">🎊 HAPPY BIRTHDAY SWARA ❤️🎊</div>
+</div>
+</section>
+
+<script>
+let current=1;
+function next(n){
+ document.getElementById("s"+current).classList.add("hidden");
+ document.getElementById("s"+n).classList.remove("hidden");
+ current=n;
+ document.getElementById("progress").style.width=((n-1)/4*100)+"%";
+ window.scrollTo(0,0);
+}
+function celebrate(){
+ document.getElementById("done").classList.remove("hidden");
+ const emojis=["🎉","🎊","✨","🎈","💗","⭐","🥳","🎂"];
+ for(let i=0;i<100;i++){
+  const c=document.createElement("div");
+  c.className="confetti";
+  c.textContent=emojis[Math.floor(Math.random()*emojis.length)];
+  c.style.left=Math.random()*100+"vw";
+  c.style.fontSize=(16+Math.random()*24)+"px";
+  c.style.animationDuration=(2+Math.random()*3)+"s";
+  document.body.appendChild(c);
+  setTimeout(()=>c.remove(),5500);
+ }
+}
+</script>
+</body>
+</html>
